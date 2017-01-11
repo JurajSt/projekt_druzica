@@ -38,36 +38,12 @@ public class StanicaController {
         return "redirect:/stanica";    //"redirect:/";
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/showMap")
-    public String showMap(Model model) {
+    @RequestMapping(method = RequestMethod.GET, path = "/showMapStations")
+    public String showMapStation (Model model) {
         Map<String, Stanica> stanice = stanicaRepository.getAll();
         model.addAttribute("stanice", stanice);
-        return "/mapa";
+        return "/mapaStanice";
     }
-
-
-    /*@RequestMapping(method = RequestMethod.GET, path = "/showMap")
-    public String showMap(Model model){
-        Map<String, Stanica> stanice = stanicaRepository.getAll();
-        Object[] key = stanice.keySet().toArray();
-        Double coorB = null;
-        Double coorL = null;
-        ArrayList<ArrayList> coorAll = new ArrayList<>();
-        for (int i = 0; i<key.length; i++){
-            coorB = stanicaRepository.getSurB(key[i].toString());
-            coorL = stanicaRepository.getSurL(key[i].toString());
-            ArrayList coor = new ArrayList();
-            coor.add(key[i].toString());
-            coor.add(coorB);
-            coor.add(coorL);
-            coorAll.add(coor);
-        }
-        model.addAttribute("coorAll", coorAll);
-        //System.out.print(coorB);
-        //System.out.print(coorL);
-
-        return "/mapa";
-    }*/
 
     @RequestMapping(method = RequestMethod.POST, path = "/createStanica")
     public String createStanica(@RequestParam("nazevStanice") String nazevStanice,
@@ -97,7 +73,27 @@ public class StanicaController {
         }
         stanicaRepository.saveStanica(stanica);
         return "redirect:/stanica";
-
-
     }
+
+    /*@RequestMapping(method = RequestMethod.GET, path = "/showMap")
+    public String showMap(Model model){
+        Map<String, Stanica> stanice = stanicaRepository.getAll();
+        Object[] key = stanice.keySet().toArray();
+        Double coorB = null;
+        Double coorL = null;
+        ArrayList<ArrayList> coorAll = new ArrayList<>();
+        for (int i = 0; i<key.length; i++){
+            coorB = stanicaRepository.getSurB(key[i].toString());
+            coorL = stanicaRepository.getSurL(key[i].toString());
+            ArrayList coor = new ArrayList();
+            coor.add(key[i].toString());
+            coor.add(coorB);
+            coor.add(coorL);
+            coorAll.add(coor);
+        }
+        model.addAttribute("coorAll", coorAll);
+        //System.out.print(coorB);
+        //System.out.print(coorL);
+        return "/mapa";
+    }*/
 }

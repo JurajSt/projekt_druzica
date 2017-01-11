@@ -8,6 +8,11 @@
 
 <h1>Zoznam Družíc</h1>
 
+
+<form action="/showMapSatellites" method="GET" ><br>
+Zobrazenie druzic na mape <input type="submit" value="Mapa">
+</form>
+
 <table>
 <tr><th>ID</th><th>Názov</th><th>X</th><th>Y</th><th>Z</th><th>B</th><th>L</th><th>H</th><th>Čas</th></tr>
 <c:forEach items="${druzice.values()}" var="b">

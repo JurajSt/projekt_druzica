@@ -35,6 +35,13 @@ public class DruzicaController {
         return "/index";
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/showMapSatellites")
+    public String showMapSatellites (Model model) {
+        Map<Integer, Druzica> druzice = druzicaRepository.getAll();
+        model.addAttribute("druzice", druzice);
+        return "/mapaDruzice";
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/createDruzica")
     public String createDruzica () throws IOException {
         File folder = new File("src/main/resources/file");
@@ -81,34 +88,5 @@ public class DruzicaController {
         druzicaRepository.deleteDruzica(ID);
         return "redirect:/druzica";                    // presmeruje do kontroleru /
     }
-
-    /*@RequestMapping(method = RequestMethod.GET, path = "/createDruzica")
-    public String createDruzica(@RequestParam("nazevDruzice") String nazevDruzice,
-                                @RequestParam("surDruziceX") Double surDruziceX,
-                                @RequestParam("surDruziceY") Double surDruziceY,
-                                @RequestParam("surDruziceZ") Double surDruziceZ,
-                                @RequestParam("surDruziceB") Double surDruziceB,
-                                @RequestParam("surDruziceL") Double surDruziceL,
-                                @RequestParam("surDruziceH") Double surDruziceH,
-                                @RequestParam("cas") Double cas) throws IOException {
-        Druzica druzica = new Druzica(nazevDruzice, surDruziceX, surDruziceY, surDruziceZ, surDruziceB, surDruziceL, surDruziceH, cas);
-        //long pocetFile = Files.list(Paths.get("src\\main\\resources\\file\\")).count();      // pocet suborv v zlozke
-        nazevDruzice = "Druzica1";
-        File folder = new File("src/main/resources/file");
-        File[] listOfFiles = folder.listFiles();
-        String cesta = null;
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                //System.out.println("File " + listOfFiles[i].getName());
-                cesta = "src\\main\\resources\\file\\" + listOfFiles[i].getName();
-                String skuska = new NavigSprava().vypocetNavData(cesta);             // precita file
-                System.out.println(skuska);
-            } else if (listOfFiles[i].isDirectory()) {
-                System.out.println("Directory " + listOfFiles[i].getName());
-            }
-        }
-        druzicaRepository.saveDruzica(druzica);
-        return "redirect:/stanica";
-    }*/
 
 }

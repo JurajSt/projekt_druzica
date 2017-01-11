@@ -30,7 +30,7 @@
 		</table>
 </form>
 
-<form action="/showMap" method="GET" ><br>
+<form action="/showMapStations" method="GET" ><br>
 Zobrazenie stanic na mape <input type="submit" value="Mapa">
 </form>
 
